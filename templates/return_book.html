@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Return Book | Library Management{% endblock %}
+{% block content %}
+<h1 class="h2 mb-3">Return a book</h1>
+<div class="card"><div class="table-responsive">
+<table class="table table-striped table-hover mb-0 align-middle">
+    <thead><tr><th>Issue ID</th><th>Member</th><th>Book</th><th>Issue date</th><th>Due date</th><th>Overdue days</th><th>Estimated fine</th><th>Action</th></tr></thead>
+    <tbody>{% for issue in issues %}
+    <tr><td>{{ issue.id }}</td><td>{{ issue.member_code }} — {{ issue.member_name }}</td><td>{{ issue.book_title }}</td><td>{{ issue.issue_date }}</td><td>{{ issue.due_date }}</td><td>{{ issue.overdue_days }}</td><td>₹{{ issue.estimated_fine }}</td><td><form method="post"><input type="hidden" name="issue_id" value="{{ issue.id }}"><button class="btn btn-sm btn-primary" type="submit">Return book</button></form></td></tr>
+    {% else %}<tr><td colspan="8" class="text-center text-muted py-4">There are no books waiting to be returned.</td></tr>{% endfor %}</tbody>
+</table>
+</div></div>
+{% endblock %}

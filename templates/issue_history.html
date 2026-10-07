@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Issue History | Library Management{% endblock %}
+{% block content %}
+<h1 class="h2 mb-3">Issue history</h1>
+<div class="card"><div class="table-responsive">
+<table class="table table-striped table-hover mb-0 align-middle">
+    <thead><tr><th>Issue ID</th><th>Member</th><th>Book</th><th>Issue date</th><th>Due date</th><th>Return date</th><th>Status</th><th>Overdue days</th><th>Fine</th></tr></thead>
+    <tbody>{% for issue in issues %}
+    <tr><td>{{ issue.id }}</td><td>{{ issue.member_code }} — {{ issue.member_name }}</td><td>{{ issue.book_title }}</td><td>{{ issue.issue_date }}</td><td>{{ issue.due_date }}</td><td>{{ issue.return_date or "—" }}</td><td>
+        {% if issue.status == "Returned" %}<span class="badge text-bg-success">{{ issue.status }}</span>
+        {% elif issue.status == "Overdue" %}<span class="badge text-bg-danger">{{ issue.status }}</span>
+        {% else %}<span class="badge text-bg-primary">{{ issue.status }}</span>{% endif %}
+    </td><td>{{ issue.display_overdue_days }}</td><td>₹{{ issue.display_fine }}</td></tr>
+    {% else %}<tr><td colspan="9" class="text-center text-muted py-4">No issue records yet.</td></tr>{% endfor %}</tbody>
+</table>
+</div></div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Issue Book | Library Management{% endblock %}
+{% block content %}
+<h1 class="h2 mb-3">Issue a book</h1>
+<div class="card form-card"><div class="card-body">
+{% if not has_books %}
+    <div class="alert alert-info">Add a book before creating an issue.</div>
+{% elif not members %}
+    <div class="alert alert-info">Add a member before creating an issue.</div>
+{% elif not books %}
+    <div class="alert alert-info">No books are currently available to issue.</div>
+{% else %}
+<form method="post">
+    <div class="mb-3"><label class="form-label" for="member_id">Member</label><select class="form-select" id="member_id" name="member_id" required><option value="">Select a member</option>{% for member in members %}<option value="{{ member.id }}" {% if request.form.get('member_id') == member.id|string %}selected{% endif %}>{{ member.member_id }} — {{ member.name }}</option>{% endfor %}</select></div>
+    <div class="mb-3"><label class="form-label" for="book_id">Book</label><select class="form-select" id="book_id" name="book_id" required><option value="">Select a book</option>{% for book in books %}<option value="{{ book.id }}" {% if request.form.get('book_id') == book.id|string %}selected{% endif %}>{{ book.title }} — {{ book.author }} ({{ book.available_quantity }} available)</option>{% endfor %}</select></div>
+    <p class="text-muted">Issue date is today. The book is due 14 days after issue.</p>
+    <button class="btn btn-primary" type="submit">Issue book</button>
+</form>
+{% endif %}
+</div></div>
+{% endblock %}

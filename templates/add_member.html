@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Add Member | Library Management{% endblock %}
+{% block content %}
+<h1 class="h2 mb-3">Add member</h1>
+<div class="card form-card"><div class="card-body">
+<form method="post">
+    <div class="row g-3">
+        <div class="col-md-6"><label class="form-label" for="member_id">Member ID</label><input class="form-control" id="member_id" name="member_id" value="{{ request.form.get('member_id', '') }}" required></div>
+        <div class="col-md-6"><label class="form-label" for="name">Name</label><input class="form-control" id="name" name="name" value="{{ request.form.get('name', '') }}" required></div>
+        <div class="col-md-6"><label class="form-label" for="email">Email</label><input class="form-control" id="email" name="email" type="email" value="{{ request.form.get('email', '') }}" required></div>
+        <div class="col-md-6"><label class="form-label" for="phone">Phone</label><input class="form-control" id="phone" name="phone" value="{{ request.form.get('phone', '') }}" required></div>
+        <div class="col-12"><label class="form-label" for="address">Address</label><textarea class="form-control" id="address" name="address" rows="3" required>{{ request.form.get('address', '') }}</textarea></div>
+    </div>
+    <div class="mt-4"><button class="btn btn-primary" type="submit">Save member</button> <a class="btn btn-outline-secondary" href="{{ url_for('members') }}">Cancel</a></div>
+</form>
+</div></div>
+{% endblock %}

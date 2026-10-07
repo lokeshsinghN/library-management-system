@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Library Management{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h2 mb-1">Dashboard</h1>
+        <p class="text-muted mb-0">Library overview</p>
+    </div>
+    <a class="btn btn-primary mt-2" href="{{ url_for('issue_book') }}">Issue a book</a>
+</div>
+<div class="row g-3">
+    <div class="col-sm-6 col-lg"><div class="card stat-card h-100"><div class="card-body"><div class="text-muted">Total books</div><div class="stat-number">{{ stats.total_books }}</div></div></div></div>
+    <div class="col-sm-6 col-lg"><div class="card stat-card h-100"><div class="card-body"><div class="text-muted">Available books</div><div class="stat-number text-success">{{ stats.available_books }}</div></div></div></div>
+    <div class="col-sm-6 col-lg"><div class="card stat-card h-100"><div class="card-body"><div class="text-muted">Issued books</div><div class="stat-number text-primary">{{ stats.issued_books }}</div></div></div></div>
+    <div class="col-sm-6 col-lg"><div class="card stat-card h-100"><div class="card-body"><div class="text-muted">Total members</div><div class="stat-number">{{ stats.total_members }}</div></div></div></div>
+    <div class="col-sm-6 col-lg"><div class="card stat-card h-100"><div class="card-body"><div class="text-muted">Overdue books</div><div class="stat-number text-danger">{{ stats.overdue_books }}</div></div></div></div>
+</div>
+<div class="card mt-4">
+    <div class="card-body">
+        <h2 class="h5">Quick links</h2>
+        <a class="btn btn-outline-primary me-2 mb-2" href="{{ url_for('books') }}">Manage books</a>
+        <a class="btn btn-outline-primary me-2 mb-2" href="{{ url_for('members') }}">Manage members</a>
+        <a class="btn btn-outline-primary me-2 mb-2" href="{{ url_for('return_book') }}">Process a return</a>
+        <a class="btn btn-outline-primary mb-2" href="{{ url_for('issue_history') }}">View issue history</a>
+    </div>
+</div>
+{% endblock %}

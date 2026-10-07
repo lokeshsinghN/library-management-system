@@ -1,0 +1,31 @@
+body {
+    background-color: #f5f7fb;
+}
+
+.navbar {
+    box-shadow: 0 2px 8px rgb(20 45 80 / 12%);
+}
+
+.stat-card {
+    border: 0;
+    box-shadow: 0 2px 10px rgb(20 45 80 / 7%);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0.4rem;
+}
+
+.form-card {
+    max-width: 800px;
+}
+
+.login-area {
+    min-height: 70vh;
+}
+
+.table th {
+    white-space: nowrap;
+}
